@@ -4,8 +4,6 @@ import Header from './Header'
 import Deck from './Deck'
 import Footer from './Footer'
 
-
-
 export default function Main() {
 
   const[cont, setCont] = React.useState(0);
