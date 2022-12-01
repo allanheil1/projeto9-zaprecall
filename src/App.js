@@ -1,7 +1,12 @@
-function App() {
+import GlobalStyle from './components/globalStyle'
+import Main from './components/Main'
+
+
+export default function App() {
   return (
-        <h1>Oláasdfasdf</h1>
+        <>
+          <h1>Oiee</h1>
+          <Main />
+        </>
   );
 }
-
-export default App;
