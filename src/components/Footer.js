@@ -8,6 +8,7 @@ export default function Footer(){
     );
 }
 
+//Styled-Components
 const FooterContainer = styled.div`
     width: 100%;
     min-height: 50px;

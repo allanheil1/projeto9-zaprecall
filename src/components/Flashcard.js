@@ -8,11 +8,14 @@ import iconErrado from '../assets/img/icone_erro.png'
 
 export default function Flashcard({card, cont, setCont}){
 
+    //estado que controla o tipo de card a ser mostrado (varia conforme vamos avançando com os cliques)
     const [type, setType] = React.useState('ClosedQuestion');
+    //estado que controla o ícone (errado, quase ou certo) a ser mostrado no CardDone
     const [icon, setIcon] = React.useState('');
+    //estado que controla a cor do texto (verde se certo, vermelho se errado, laranja se quase) no CardDone
     const [titleColor, setTitleColor] = React.useState('');
 
-
+    //Cartão Fechado
     if(type === 'ClosedQuestion'){
         return(
             <ClosedQuestion>
@@ -22,6 +25,7 @@ export default function Flashcard({card, cont, setCont}){
         );
     }
     
+    //Cartão aberto e mostrando a pergunta
     if(type === 'OpenQuestion'){
         return(
             <OpenQuestion>
@@ -31,6 +35,7 @@ export default function Flashcard({card, cont, setCont}){
         );
     }
 
+    //Cartão aberto e com os botões
     if(type === 'OpenQuestionWithButtons'){
         return(
             <OpenQuestion>
@@ -44,6 +49,7 @@ export default function Flashcard({card, cont, setCont}){
         );
     }
 
+    //Cartão finalizado
     if(type === 'CardDone'){
         return(
             <CardDone>
@@ -54,6 +60,7 @@ export default function Flashcard({card, cont, setCont}){
     }
 }
 
+//Styled-Components
 const ClosedQuestion = styled.div`
     width: 300px;
     height: 35px;

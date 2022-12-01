@@ -18,6 +18,7 @@ export default function Main() {
   );
 }
 
+//Styled-Components
 const MainContainer = styled.div`
   background-color: #FB6B6B;
   width: 100vw;

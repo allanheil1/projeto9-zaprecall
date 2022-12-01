@@ -11,6 +11,7 @@ export default function Header(){
     );
 }
 
+//Styled-Components
 const HeaderContainer = styled.div`
     display: flex;
     align-items: center;
