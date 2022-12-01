@@ -1,30 +1,58 @@
+import React from 'react'
 import styled from 'styled-components'
 import LogoSetaPlay from '../assets/img/seta_play.png'
 import LogoSetaVirar from '../assets/img/seta_virar.png'
-import icon from '../assets/img/icone_erro.png'
+import iconCerto from '../assets/img/icone_certo.png'
+import iconQuase from '../assets/img/icone_quase.png'
+import iconErrado from '../assets/img/icone_erro.png'
 
 export default function Flashcard(){
-    return(
-        <>
+
+    const [type, setType] = React.useState('ClosedQuestion');
+    const [icon, setIcon] = React.useState('');
+    const [titleColor, setTitleColor] = React.useState('');
+
+
+    if(type === 'ClosedQuestion'){
+        return(
             <ClosedQuestion>
                 <p>Card Fechado</p>
-                <img src={LogoSetaPlay} alt='LogoSetaPlay' />
+                <img src={LogoSetaPlay} alt='LogoSetaPlay' onClick={() => setType('OpenQuestion')}/>
             </ClosedQuestion>
+        );
+    }
+    
+    if(type === 'OpenQuestion'){
+        return(
             <OpenQuestion>
                 <p>Pergunta Card Aberto</p>
-                <img src={LogoSetaVirar} alt='LogoSetaVirar' />
+                <img src={LogoSetaVirar} alt='LogoSetaVirar' onClick={() => setType('OpenQuestionWithButtons')}/>
             </OpenQuestion>
+        );
+    }
+
+    if(type === 'OpenQuestionWithButtons'){
+        return(
             <OpenQuestion>
                 <p>Pergunta Card Aberto</p>
-                <img src={LogoSetaVirar} alt='LogoSetaVirar' />
+                <div>
+                    <Button cor = '#FF3030'icon='iconeErrado' onClick={() => setType('CardDone')} >Não lembrei</Button>
+                    <Button cor = '#FF922E'icon='iconeQuase' onClick={() => setType('CardDone')} >Quase não lembrei</Button>
+                    <Button cor = '#2FBE34'icon='iconeCerto' onClick={() => setType('CardDone')} >Zap!</Button>
+                </div>
             </OpenQuestion>
+        );
+    }
+
+    if(type === 'CardDone'){
+        return(
+
             <CardDone>
                 <p>CardDone</p>
-                <img src={icon} alt="IconAnswer" />
+                <img src={iconCerto} alt="IconAnswer" />
             </CardDone>
-        </>
-
-    );
+        );
+    }
 }
 
 const ClosedQuestion = styled.div`
@@ -73,6 +101,10 @@ const OpenQuestion = styled.div`
         bottom: 10px;
         right: 10px;
       }
+
+    div {
+        display: flex;
+    }
 `
 
 const CardDone = styled.div`    
@@ -96,5 +128,24 @@ const CardDone = styled.div`
         color: ${(props) => props.cor};
         text-decoration: line-through;
     }
+`
+
+const Button = styled.button`
+    width: 100px;
+    font-family: "Recursive";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #ffffff;
+    background-color: ${(props) => props.cor};
+    border-radius: 5px;
+    border: none;
+    margin: 0px 8px;
+    padding: 5px;
 `
 

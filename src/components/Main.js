@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Header from './Header'
 import Deck from './Deck'
 import Footer from './Footer'
+import cards from './cards'
 
 export default function Main() {
 
@@ -11,7 +12,7 @@ export default function Main() {
   return (
         <MainContainer>
           <Header />
-          <Deck />
+          <Deck cards={cards} cont={cont} setCont={setCont}/>
           <Footer />
         </MainContainer>
   );
