@@ -6,7 +6,7 @@ import iconCerto from '../assets/img/icone_certo.png'
 import iconQuase from '../assets/img/icone_quase.png'
 import iconErrado from '../assets/img/icone_erro.png'
 
-export default function Flashcard(){
+export default function Flashcard({card, cont, setCont}){
 
     const [type, setType] = React.useState('ClosedQuestion');
     const [icon, setIcon] = React.useState('');
@@ -16,7 +16,7 @@ export default function Flashcard(){
     if(type === 'ClosedQuestion'){
         return(
             <ClosedQuestion>
-                <p>Card Fechado</p>
+                <p>Pergunta</p>
                 <img src={LogoSetaPlay} alt='LogoSetaPlay' onClick={() => setType('OpenQuestion')}/>
             </ClosedQuestion>
         );
@@ -25,7 +25,7 @@ export default function Flashcard(){
     if(type === 'OpenQuestion'){
         return(
             <OpenQuestion>
-                <p>Pergunta Card Aberto</p>
+                <p>{card.question}</p>
                 <img src={LogoSetaVirar} alt='LogoSetaVirar' onClick={() => setType('OpenQuestionWithButtons')}/>
             </OpenQuestion>
         );
@@ -34,11 +34,11 @@ export default function Flashcard(){
     if(type === 'OpenQuestionWithButtons'){
         return(
             <OpenQuestion>
-                <p>Pergunta Card Aberto</p>
+                <p>{card.answer}</p>
                 <div>
-                    <Button cor = '#FF3030'icon='iconeErrado' onClick={() => setType('CardDone')} >Não lembrei</Button>
-                    <Button cor = '#FF922E'icon='iconeQuase' onClick={() => setType('CardDone')} >Quase não lembrei</Button>
-                    <Button cor = '#2FBE34'icon='iconeCerto' onClick={() => setType('CardDone')} >Zap!</Button>
+                    <Button cor = '#FF3030'icon='iconeErrado' onClick={() => setType('CardDone')}> Não lembrei </Button>
+                    <Button cor = '#FF922E'icon='iconeQuase' onClick={() => setType('CardDone')}> Quase não lembrei </Button>
+                    <Button cor = '#2FBE34'icon='iconeCerto' onClick={() => setType('CardDone')}> Zap! </Button>
                 </div>
             </OpenQuestion>
         );
@@ -46,7 +46,6 @@ export default function Flashcard(){
 
     if(type === 'CardDone'){
         return(
-
             <CardDone>
                 <p>CardDone</p>
                 <img src={iconCerto} alt="IconAnswer" />

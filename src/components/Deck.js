@@ -5,8 +5,8 @@ export default function Deck({cards, cont, setCont}){
         <>
             {cards.map((card, index) => (
                 <Flashcard
-                    card={card}
                     key={index}
+                    card={card}
                     cont={cont}
                     setCont={setCont}
                 >
