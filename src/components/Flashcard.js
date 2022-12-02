@@ -6,7 +6,7 @@ import iconCerto from '../assets/img/icone_certo.png'
 import iconQuase from '../assets/img/icone_quase.png'
 import iconErrado from '../assets/img/icone_erro.png'
 
-export default function Flashcard({card, cont, setCont}){
+export default function Flashcard({index, card, cont, setCont}){
 
     //estado que controla o tipo de card a ser mostrado (varia conforme vamos avançando com os cliques)
     const [type, setType] = React.useState('ClosedQuestion');
@@ -19,7 +19,7 @@ export default function Flashcard({card, cont, setCont}){
     if(type === 'ClosedQuestion'){
         return(
             <ClosedQuestion>
-                <p>Pergunta</p>
+                <p>Pergunta {index + 1} </p>
                 <img src={LogoSetaPlay} alt='LogoSetaPlay' onClick={() => setType('OpenQuestion')}/>
             </ClosedQuestion>
         );
@@ -41,9 +41,9 @@ export default function Flashcard({card, cont, setCont}){
             <OpenQuestion>
                 <p>{card.answer}</p>
                 <div>
-                    <Button cor = '#FF3030'icon='iconeErrado' onClick={() => setType('CardDone')}> Não lembrei </Button>
-                    <Button cor = '#FF922E'icon='iconeQuase' onClick={() => setType('CardDone')}> Quase não lembrei </Button>
-                    <Button cor = '#2FBE34'icon='iconeCerto' onClick={() => setType('CardDone')}> Zap! </Button>
+                    <Button cor = '#FF3030' icon='iconeErrado' onClick={() => setType('CardDone')}> Não lembrei </Button>
+                    <Button cor = '#FF922E' icon='iconeQuase' onClick={() => setType('CardDone')}> Quase não lembrei </Button>
+                    <Button cor = '#2FBE34' icon='iconeCerto' onClick={() => setType('CardDone')}> Zap! </Button>
                 </div>
             </OpenQuestion>
         );
