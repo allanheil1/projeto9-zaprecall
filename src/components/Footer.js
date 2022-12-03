@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
-export default function Footer(){
+export default function Footer({deckLength, cont}){
     return(
         <FooterContainer>
-            <p>Contador/Tamanho do Deck CONCLUÍDOS</p>
+            <p>{cont}/{deckLength} CONCLUÍDOS</p>
         </FooterContainer>
     );
 }

@@ -11,52 +11,51 @@ export default function Flashcard({index, card, cont, setCont}){
     //estado que controla o tipo de card a ser mostrado (varia conforme vamos avançando com os cliques)
     const [type, setType] = React.useState('ClosedQuestion');
     //estado que controla o ícone (errado, quase ou certo) a ser mostrado no CardDone
-    const [icon, setIcon] = React.useState('');
+    const [icon, setIcon] = React.useState(iconCerto);
     //estado que controla a cor do texto (verde se certo, vermelho se errado, laranja se quase) no CardDone
     const [titleColor, setTitleColor] = React.useState('');
 
-    //Cartão Fechado
-    if(type === 'ClosedQuestion'){
-        return(
-            <ClosedQuestion>
-                <p>Pergunta {index + 1} </p>
-                <img src={LogoSetaPlay} alt='LogoSetaPlay' onClick={() => setType('OpenQuestion')}/>
-            </ClosedQuestion>
-        );
-    }
-    
-    //Cartão aberto e mostrando a pergunta
-    if(type === 'OpenQuestion'){
-        return(
-            <OpenQuestion>
-                <p>{card.question}</p>
-                <img src={LogoSetaVirar} alt='LogoSetaVirar' onClick={() => setType('OpenQuestionWithButtons')}/>
-            </OpenQuestion>
-        );
-    }
+    //A função flashcard retorna o tipo de cartão de acordo com o estado da variável 'type', que pode ser 'ClosedQuestion', 'OpenQuestion', 'OpenQuestionWithButtons' e 'CardDone'
+    switch(type){
+        case 'ClosedQuestion':
+            return(
+                <ClosedQuestion>
+                    <p>Pergunta {index + 1} </p>
+                    <img src={LogoSetaPlay} alt='LogoSetaPlay' onClick={() => setType('OpenQuestion')}/>
+                </ClosedQuestion>
+            );
+            break;
+        
+        case 'OpenQuestion':
+            return(
+                <OpenQuestion>
+                    <p>{card.question}</p>
+                    <img src={LogoSetaVirar} alt='LogoSetaVirar' onClick={() => setType('OpenQuestionWithButtons')}/>
+                </OpenQuestion>
+            );
+            break;
 
-    //Cartão aberto e com os botões
-    if(type === 'OpenQuestionWithButtons'){
-        return(
-            <OpenQuestion>
-                <p>{card.answer}</p>
-                <div>
-                    <Button cor = '#FF3030' icon='iconeErrado' onClick={() => setType('CardDone')}> Não lembrei </Button>
-                    <Button cor = '#FF922E' icon='iconeQuase' onClick={() => setType('CardDone')}> Quase não lembrei </Button>
-                    <Button cor = '#2FBE34' icon='iconeCerto' onClick={() => setType('CardDone')}> Zap! </Button>
-                </div>
-            </OpenQuestion>
-        );
-    }
+        case 'OpenQuestionWithButtons':
+            return(
+                <OpenQuestion>
+                    <p>{card.answer}</p>
+                    <div>
+                        <Button cor = '#FF3030' onClick={() => (setType('CardDone'), setIcon(iconErrado))}> Não lembrei </Button>
+                        <Button cor = '#FF922E' onClick={() => (setType('CardDone'), setIcon(iconQuase))}> Quase não lembrei </Button>
+                        <Button cor = '#2FBE34' onClick={() => (setType('CardDone'), setIcon(iconCerto))}> Zap! </Button>
+                    </div>
+                </OpenQuestion>
+            );
+            break;
 
-    //Cartão finalizado
-    if(type === 'CardDone'){
-        return(
-            <CardDone>
-                <p>CardDone</p>
-                <img src={iconCerto} alt="IconAnswer" />
-            </CardDone>
-        );
+        case 'CardDone':
+            return(
+                <CardDone>
+                    <p>CardDone</p>
+                    <img src={icon} alt="IconAnswer" />
+                </CardDone>
+            );
+            break;
     }
 }
 
