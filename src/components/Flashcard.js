@@ -11,11 +11,11 @@ export default function Flashcard({index, card, cont, setCont}){
     //estado que controla o tipo de card a ser mostrado (varia conforme vamos avançando com os cliques)
     const [type, setType] = React.useState('ClosedQuestion');
     //estado que controla o ícone (errado, quase ou certo) a ser mostrado no CardDone
-    const [icon, setIcon] = React.useState(iconCerto);
+    const [icon, setIcon] = React.useState('');
     //estado que controla a cor do texto (verde se certo, vermelho se errado, laranja se quase) no CardDone
     const [titleColor, setTitleColor] = React.useState('');
 
-    //A função flashcard retorna o tipo de cartão de acordo com o estado da variável 'type', que pode ser 'ClosedQuestion', 'OpenQuestion', 'OpenQuestionWithButtons' e 'CardDone'
+    //A função/componente Flashcard deve retornar o tipo de cartão de acordo com o estado da variável 'type', que pode ser 'ClosedQuestion', 'OpenQuestion', 'OpenQuestionWithButtons' e 'CardDone'
     switch(type){
         case 'ClosedQuestion':
             return(
@@ -40,9 +40,9 @@ export default function Flashcard({index, card, cont, setCont}){
                 <OpenQuestion>
                     <p>{card.answer}</p>
                     <div>
-                        <Button cor = '#FF3030' onClick={() => (setType('CardDone'), setIcon(iconErrado))}> Não lembrei </Button>
-                        <Button cor = '#FF922E' onClick={() => (setType('CardDone'), setIcon(iconQuase))}> Quase não lembrei </Button>
-                        <Button cor = '#2FBE34' onClick={() => (setType('CardDone'), setIcon(iconCerto))}> Zap! </Button>
+                        <Button cor = '#FF3030' onClick={() => (setType('CardDone'), setIcon(iconErrado), setTitleColor('#FF3030'))}> Não lembrei </Button>
+                        <Button cor = '#FF922E' onClick={() => (setType('CardDone'), setIcon(iconQuase), setTitleColor('#FF922E'))}> Quase não lembrei </Button>
+                        <Button cor = '#2FBE34' onClick={() => (setType('CardDone'), setIcon(iconCerto), setTitleColor('#2FBE34'))}> Zap! </Button>
                     </div>
                 </OpenQuestion>
             );
@@ -50,8 +50,8 @@ export default function Flashcard({index, card, cont, setCont}){
 
         case 'CardDone':
             return(
-                <CardDone>
-                    <p>CardDone</p>
+                <CardDone titleColor = {titleColor}>
+                    <p>Pergunta {index + 1} </p>
                     <img src={icon} alt="IconAnswer" />
                 </CardDone>
             );
@@ -130,7 +130,7 @@ const CardDone = styled.div`
         font-weight: 700;
         font-size: 16px;
         line-height: 19px;
-        color: ${(props) => props.cor};
+        color: ${(props) => props.titleColor};
         text-decoration: line-through;
     }
 `
