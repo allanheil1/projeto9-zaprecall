@@ -40,9 +40,9 @@ export default function Flashcard({index, card, cont, setCont}){
                 <OpenQuestion>
                     <p>{card.answer}</p>
                     <div>
-                        <Button cor = '#FF3030' onClick={() => (setType('CardDone'), setIcon(iconErrado), setTitleColor('#FF3030'))}> Não lembrei </Button>
-                        <Button cor = '#FF922E' onClick={() => (setType('CardDone'), setIcon(iconQuase), setTitleColor('#FF922E'))}> Quase não lembrei </Button>
-                        <Button cor = '#2FBE34' onClick={() => (setType('CardDone'), setIcon(iconCerto), setTitleColor('#2FBE34'))}> Zap! </Button>
+                        <Button cor = '#FF3030' onClick={() => (setType('CardDone'), setIcon(iconErrado), setTitleColor('#FF3030'), setCont(cont + 1))}> Não lembrei </Button>
+                        <Button cor = '#FF922E' onClick={() => (setType('CardDone'), setIcon(iconQuase), setTitleColor('#FF922E'), setCont(cont + 1))}> Quase não lembrei </Button>
+                        <Button cor = '#2FBE34' onClick={() => (setType('CardDone'), setIcon(iconCerto), setTitleColor('#2FBE34'), setCont(cont + 1))}> Zap! </Button>
                     </div>
                 </OpenQuestion>
             );

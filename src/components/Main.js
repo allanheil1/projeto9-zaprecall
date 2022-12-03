@@ -8,6 +8,7 @@ import cards from './cards'
 export default function Main() {
 
   const[cont, setCont] = React.useState(0);
+  
   return (
         <MainContainer>
           <Header />
