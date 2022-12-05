@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export default function Footer({deckLength, cont}){
     return(
-        <FooterContainer>
+        <FooterContainer data-test='footer'>
             <p>{cont}/{deckLength} CONCLUÍDOS</p>
         </FooterContainer>
     );

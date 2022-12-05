@@ -19,8 +19,8 @@ export default function Flashcard({index, card, cont, setCont}){
     switch(type){
         case 'ClosedQuestion':
             return(
-                <ClosedQuestion>
-                    <p>Pergunta {index + 1} </p>
+                <ClosedQuestion data-test='flashcard'>
+                    <p data-test='flashcard-text'>Pergunta {index + 1} </p>
                     <img src={LogoSetaPlay} alt='LogoSetaPlay' onClick={() => setType('OpenQuestion')}/>
                 </ClosedQuestion>
             );
@@ -28,21 +28,21 @@ export default function Flashcard({index, card, cont, setCont}){
         
         case 'OpenQuestion':
             return(
-                <OpenQuestion>
-                    <p>{card.question}</p>
-                    <img src={LogoSetaVirar} alt='LogoSetaVirar' onClick={() => setType('OpenQuestionWithButtons')}/>
+                <OpenQuestion data-test='flashcard'>
+                    <p data-test='flashcard-text'>{card.question}</p>
+                    <img data-test='turn-btn' src={LogoSetaVirar} alt='LogoSetaVirar' onClick={() => setType('OpenQuestionWithButtons')}/>
                 </OpenQuestion>
             );
             break;
 
         case 'OpenQuestionWithButtons':
             return(
-                <OpenQuestion>
-                    <p>{card.answer}</p>
+                <OpenQuestion data-test='flashcard'>
+                    <p data-test='flashcard-text'>{card.answer}</p>
                     <div>
-                        <Button cor = '#FF3030' onClick={() => (setType('CardDone'), setIcon(iconErrado), setTitleColor('#FF3030'), setCont(cont + 1))}> Não lembrei </Button>
-                        <Button cor = '#FF922E' onClick={() => (setType('CardDone'), setIcon(iconQuase), setTitleColor('#FF922E'), setCont(cont + 1))}> Quase não lembrei </Button>
-                        <Button cor = '#2FBE34' onClick={() => (setType('CardDone'), setIcon(iconCerto), setTitleColor('#2FBE34'), setCont(cont + 1))}> Zap! </Button>
+                        <Button data-test='no-btn' cor = '#FF3030' onClick={() => (setType('CardDone'), setIcon(iconErrado), setTitleColor('#FF3030'), setCont(cont + 1))}> Não lembrei </Button>
+                        <Button data-test='partial-btn' cor = '#FF922E' onClick={() => (setType('CardDone'), setIcon(iconQuase), setTitleColor('#FF922E'), setCont(cont + 1))}> Quase não lembrei </Button>
+                        <Button data-test='zap-btn' cor = '#2FBE34' onClick={() => (setType('CardDone'), setIcon(iconCerto), setTitleColor('#2FBE34'), setCont(cont + 1))}> Zap! </Button>
                     </div>
                 </OpenQuestion>
             );
@@ -50,9 +50,9 @@ export default function Flashcard({index, card, cont, setCont}){
 
         case 'CardDone':
             return(
-                <CardDone titleColor = {titleColor}>
-                    <p>Pergunta {index + 1} </p>
-                    <img src={icon} alt="IconAnswer" />
+                <CardDone data-test='flashcard' titleColor = {titleColor}>
+                    <p data-test='flashcard-text'>Pergunta {index + 1} </p>
+                    <img data-test='zap-icon' src={icon} alt="IconAnswer" />
                 </CardDone>
             );
             break;
